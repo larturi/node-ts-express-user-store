@@ -23,10 +23,16 @@ export class AuthService {
       // Envia email de confirmacion
       await this.sendEmailValidationLink(user.email)
 
+      const token = await JwtAdapter.generateToken({
+        id: user.id
+      })
+
+      if (!token) throw CustomError.internalServer('Error wile creating JWT')
+
       const { password, ...userEntity } = UserEntity.fromObject(user)
       return {
         user: userEntity,
-        token: 'ABC'
+        token: token
       }
     } catch (error) {
       throw CustomError.internalServer(`${error}`)
