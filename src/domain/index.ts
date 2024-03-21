@@ -7,4 +7,4 @@ export * from './dtos/auth/login.dto'
 
 export * from './dtos/category/create-category.dto'
 
-// export * from './dtos/shared/pagination.dto'
+export * from './dtos/common/pagination.dto'
